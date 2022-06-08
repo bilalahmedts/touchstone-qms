@@ -1,0 +1,23 @@
+Step 1
+Extract the zipped file in htdocs folder
+
+Step 2 (optional) 
+Run the command 'composer update' in order to update the dependencies
+
+Step 3
+Check and update the environment configuration file such as application name, environment, database name etc..
+
+Step 4
+Migrate the tables by using command 'php artisan migrate'
+
+Step 5
+Run the Seeders by using the following commands in same order as mentioned below:
+1) php artisan db:seed --class=SolarLtCategorySeeder
+2) php artisan db:seed --class=SolarLtDatapointSeeder
+
+
+
+
+
+
+
