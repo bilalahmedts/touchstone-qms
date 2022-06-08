@@ -1,0 +1,206 @@
+
+@extends('layouts.user')
+
+@section('title', 'Voice Evaluations')
+
+
+@section('content')
+
+
+<div class="search-area">
+    <div class="row">
+
+        <div class="col-md-6">
+            <h4 class="mb-0">Search</h4>
+        </div>
+        <div class="col-md-6">
+            <div class="button-area">
+                <button type="button" id="btn-search" class="btn btn-primary"><i class="fas fa-filter"></i></button>
+            </div>
+        </div>
+
+    </div>
+
+    <form action="{{ route('voice-evaluation-reviews.index', $status) }}" method="get" autocomplete="off">
+
+        <input type="hidden" name="search" value="1">
+        @php
+            $record_id = '';
+            $associate_id = -1;
+            $outcome = -1;
+            $from_date = '';
+            $to_date = '';
+
+            if(isset($_GET['search'])){
+                $associate_id = $_GET['associate_id'];
+                $outcome = $_GET['outcome'];
+
+                if (!empty($_GET['from_date'])) {
+                    $from_date = $_GET['from_date'];
+                }
+                if (!empty($_GET['to_date'])) {
+                    $to_date = $_GET['to_date'];
+                }
+                if (!empty($_GET['record_id'])) {
+                    $record_id = $_GET['record_id'];
+                }
+            }
+
+        @endphp
+
+        <div class="card card-primary card-outline mt-3" id="search" @if(isset($_GET['search'])) style="display: block;" @endif>
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="form-group col-md-4">
+                        <label for="">Record ID</label>
+                        <input type="text" class="form-control" name="record_id" value="{{ $record_id }}" />
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="">Select Associate</label>
+                        <select name="associate_id" class="form-control select2">
+                            <option value="-1">Select Option</option>
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}" @if($user->id == $associate_id) selected @endif>{{ $user->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="">Select Outcome</label>
+                        <select name="outcome" class="form-control select2">
+                            <option value="">Select</option>
+                            <option value="accepted" @if($outcome == 'accepted') selected @endif>Accepted</option>
+                            <option value="rejected" @if($outcome == 'rejected') selected @endif>Rejected</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group col-md-4">
+                        <label for="">From Date</label>
+                        <input type="text" class="form-control datetimepicker-input datepicker1" name="from_date"
+                            value="{{ $from_date }}" data-toggle="datetimepicker" data-target=".datepicker1" />
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="">To Date</label>
+                        <input type="text" class="form-control datetimepicker-input datepicker2" name="to_date"
+                            value="{{ $to_date }}" data-toggle="datetimepicker" data-target=".datepicker2" />
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Search</button>
+                <a href="{{ route('voice-evaluation-reviews.index', $status) }}" class="ml-5">Clear Search</a>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<!-- Default box -->
+<div class="card card-primary card-outline">
+    <div class="card-header">
+        <h3 class="card-title">Voice Evaluations List</h3>
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>@sortablelink('record_id', 'Record ID')</th>
+                <th>@sortablelink('associate_id', 'Associate')</th>
+                <th>@sortablelink('campaign_id', 'Campaign')</th>
+                <th>@sortablelink('call_date', 'Call Date')</th>
+                <th>Result</th>
+                <th>Outcome</th>
+                <th>Status</th>
+                <th>@sortablelink('created_at', 'Created Time')</th>
+                <th class="action">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+
+                @if(count($voice_audits) > 0)
+
+                    @foreach ($voice_audits as $audit)
+                        <tr>
+                            <td>
+                                {{ $audit->record_id ?? 0 }}
+                            </td>
+                            <td>{{ $audit->associate->name ?? 'undefined' }}</td>
+                            <td>{{ $audit->campaign->name ?? 'undefined' }}</td>
+                            <td>{{ $audit->call_date }}</td>
+                            <td>{{ $audit->percentage }}%</td>
+                            <td>
+                                @if($audit->outcome == 'accepted')
+                                    <span class="badge bg-success">Accepted</span>
+                                @else
+                                    <span class="badge bg-danger">Rejected @if($audit->review_priority == 1) / Critical @endif</span>
+                                @endif
+                            </td>
+                            <td>
+                                @include('shared.voice-audit-status', ['status' => $audit->status])
+                            </td>
+                            <td>{{ $audit->created_at->format('d-m-Y g:i:s A') }}</td>
+                            <td class="action">
+                                <a href="{{ route('voice-evaluation-reviews.show', array($audit, $status)) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
+                    <tr><td colspan="8" class="text-center">No record found!</td></tr>
+                @endif
+
+            </tbody>
+        </table>
+
+    </div>
+
+    @if($voice_audits->total() > 15)
+        <!-- /.card-body -->
+        <div class="card-footer clearfix">
+            {{ $voice_audits->appends(request()->input())->links() }}
+        </div>
+        <!-- /.card-footer-->
+    @endif
+</div>
+<!-- /.card -->
+
+
+
+
+@endsection
+
+
+
+@section('scripts')
+
+<script>
+
+    $(function () {
+        $("#btn-search").click(function(e){
+            e.preventDefault();
+            $("#search").slideToggle();
+        });
+
+        $('.datepicker1').datetimepicker({
+            format: 'L',
+            format: 'DD/MM/YYYY',
+            keepInvalid: false
+        });
+
+        $('.datepicker2').datetimepicker({
+            format: 'L',
+            format: 'DD/MM/YYYY',
+            keepInvalid: false
+        });
+
+    });
+
+</script>
+
+@endsection

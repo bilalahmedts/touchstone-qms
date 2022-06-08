@@ -1,0 +1,127 @@
+[
+    {
+        "category_id": 1,
+        "name": "Intonations",
+        "question": "Did the agent use voice inflexion?"
+    },
+    {
+        "category_id": 1,
+        "name": "Conciseness",
+        "question": "Did the agent keep the call short and concise?"
+    },
+    {
+        "category_id": 1,
+        "name": "Clarity",
+        "question": "Did the agent speak with a neutral accent and pronunciation?"
+    },
+    {
+        "category_id": 1,
+        "name": "Concreteness",
+        "question": "Did the agent do a good job painting a clear picture about benefits in the customer's mind?"
+    },
+    {
+        "category_id": 1,
+        "name": "Correctness",
+        "question": "Was the agent grammatically accurate?"
+    },
+    {
+        "category_id": 2,
+        "name": "Effort",
+        "question": "Was the agent persistent and did not quit at the first NO?"
+    },
+    {
+        "category_id": 2,
+        "name": "Cross Sells",
+        "question": "Did the agent try to cross sell the product?"
+    },
+    {
+        "category_id": 2,
+        "name": "Identify Opportunity",
+        "question": "Did the agent actively listen and identify customers interest?"
+    },
+    {
+        "category_id": 2,
+        "name": "Effective Questioning",
+        "question": "Did the agent question effectively to probe the need of the customer?"
+    },
+    {
+        "category_id": 2,
+        "name": "Effective Closing",
+        "question": "Did the agent handle the sale from begining to the end?"
+    },
+    {
+        "category_id": 3,
+        "name": "TCPA",
+        "question": "Did the agent deliver the TCPA Disclaimer Verbatim?"
+    },
+    {
+        "category_id": 3,
+        "name": "Appropriate Behaviour",
+        "question": "Did the agent demonstrate appropriate conduct and appropriate language?"
+    },
+    {
+        "category_id": 3,
+        "name": "Ethics",
+        "question": "Did the agent submit an ethical / Valid Lead?"
+    },
+    {
+        "category_id": 3,
+        "name": "Trapper Identification / Deflection",
+        "question": "Did the agent identify if the customer was a potential trapper?"
+    },
+    {
+        "category_id": 3,
+        "name": "Company Policies",
+        "question": "Did the agent comply with the company policies while on call?"
+    },
+    {
+        "category_id": 4,
+        "name": "Consideration",
+        "question": "Did the agent match the customer's pace?"
+    },
+    {
+        "category_id": 4,
+        "name": "Courtesy",
+        "question": "Was the agent courteous with the customer?"
+    },
+    {
+        "category_id": 4,
+        "name": "Professional Attitude",
+        "question": "Was the agent professional during the call?"
+    },
+    {
+        "category_id": 4,
+        "name": "Confidence / Control",
+        "question": "Did the agent sound confident and in control?"
+    },
+    {
+        "category_id": 4,
+        "name": "Rapport Building",
+        "question": "Did the agent build Rapport with the customer?"
+    },
+    {
+        "category_id": 5,
+        "name": "Completeness",
+        "question": "Has the agent followed campaign guidelines?"
+    },
+    {
+        "category_id": 5,
+        "name": "Benefit Statements",
+        "question": "Did the agent deliver any beneficial statements in the call?"
+    },
+    {
+        "category_id": 5,
+        "name": "Rebuttals",
+        "question": "Did the agent effectively rebut the prospect?"
+    },
+    {
+        "category_id": 5,
+        "name": "Customer Concerns",
+        "question": "Did the agent identify and handle the customers concerns?"
+    },
+    {
+        "category_id": 5,
+        "name": "Concept Clarity",
+        "question": "Is the agent clear about concepts related to the product?"
+    }
+]
