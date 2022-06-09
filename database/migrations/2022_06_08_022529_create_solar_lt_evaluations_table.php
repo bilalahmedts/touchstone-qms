@@ -22,7 +22,7 @@ class CreateSolarLtEvaluationsTable extends Migration
             $table->string('customer_phone');
             $table->string('recording_link');
             $table->time('recording_duration');
-            $table->date('call_date')->nullable();
+            $table->date('call_date');
             $table->integer('user_id');
             $table->timestamps();
         });
