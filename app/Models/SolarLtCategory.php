@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SolarLtCategory extends Model
 {
     use HasFactory;
+    protected $table = 'solar_lt_categories';
     protected $fillable = [
        'id', 'name',
     ];

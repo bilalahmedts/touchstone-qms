@@ -62,6 +62,7 @@
 
                 </div>
             </div>
+
             <div class="card card-primary">
                 <div class="card-header">
                     <h3 class="card-title">Datapoints</h3>
@@ -72,7 +73,7 @@
                     @endphp
                     @if (count($responses) > 0)
                         @foreach ($responses as $response)
-                        
+                            
                             @if ($old_category_id != $response->datapoint->category->id)
                                 <div class="row">
                                     <div class="col-md-11">
@@ -114,6 +115,8 @@
 
                 </div>
             </div>
+
+
             <div class="card card-primary">
                 <div class="card-header">
                     <h3 class="card-title">Evaluations</h3>

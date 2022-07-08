@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SolarLtEvaluationResponse extends Model
 {
     use HasFactory;
-
+    protected $table = 'solar_lt_evaluation_responses';
     public function evaluation_response()
     {
         return $this->hasMany(SolarLtAudit::class, 'id', 'evaluation_id');

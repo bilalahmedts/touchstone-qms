@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SolarLtDatapoint extends Model
 {
     use HasFactory;
+    protected $table = 'solar_lt_datapoints';
     protected $fillable = [
         'id','name','question','category_id'
      ];
